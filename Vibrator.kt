@@ -1,3 +1,24 @@
+******************************manifest.xml******************************************************
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="26"
+        android:targetSdkVersion="28" />
+
+    <!--Diese Zeile kommt neu rein(Berechtigung!!!)-->
+	<uses-permission-sdk-23 android:name="android.permission.VIBRATE" />
+
+    <application..........
+	
+	
+************************************************************************************************
+
+
 ******************************MainActivity.kt***************************************************
 
 package com.example.myapplication
