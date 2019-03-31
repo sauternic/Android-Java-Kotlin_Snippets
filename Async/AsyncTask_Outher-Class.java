@@ -1,16 +1,19 @@
 package com.example.asynctask;
 
 import android.os.AsyncTask;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class AsyncKlasse extends AsyncTask<Long, Integer, Void> {
 
     // Field
     private TextView _TextView;
+    private Button _button;
 
     // Kontsruktor um 'TextView' Typ hier bekannt zu machen
-    public AsyncKlasse(TextView textView) {
+    public AsyncKlasse(TextView textView, Button button) {
         _TextView = textView;
+        _button = button;
     }
 
     // Backgroun-Thread:
@@ -39,22 +42,20 @@ public class AsyncKlasse extends AsyncTask<Long, Integer, Void> {
     // Empfänger:
     @Override
     protected void onProgressUpdate(Integer... values) {
-        super.onProgressUpdate(values);
         _TextView.setText(String.valueOf(values[0]));
     }
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        _button.setEnabled(false);
     }
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+        _button.setEnabled(true);
     }
 
     @Override
     protected void onCancelled(Void aVoid) {
-        super.onCancelled(aVoid);
     }
 }
