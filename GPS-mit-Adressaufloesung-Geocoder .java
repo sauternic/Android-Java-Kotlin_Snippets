@@ -8,7 +8,7 @@
 
 
 
-package ch.nicolassauter.pressure;
+package ch.nicolassauter.adress_test;
 
 import android.Manifest;
 import android.content.Context;
@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -68,24 +69,39 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
 
+    String altitude = "";
+
+    String address1 = "";
+    String address2 = "";
+    String address3 = "";
+    String address4 = "";
+
     @Override
     public void onLocationChanged(Location location) {
 
 
         try {
-            addressList = gc.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            addressList = gc.getFromLocation(location.getLatitude(), location.getLongitude(), 4);
         } catch (IOException e) {
-            Toast.makeText(this, "getFromLocation Fehlgeschlagen", Toast.LENGTH_LONG).show();
-            textView1.setText("Fehlgeschlagen");
-            return;
+            addressList = null;
         }
 
-        Address address = addressList.get(0);
+        altitude = String.valueOf(location.getAltitude());
 
-        String adresse = address.getAddressLine(0);
-        String altitude = String.valueOf(location.getAltitude());
+        address1 = "null";
+        address2 = "null";
+        address3 = "null";
+        address4 = "null";
 
-        textView1.setText(altitude + "\n" + adresse);
+        if (addressList != null) {
+            address1 = addressList.get(0).getAddressLine(0);
+            address2 = addressList.get(1).getAddressLine(0);
+            address3 = addressList.get(2).getAddressLine(0);
+            address4 = addressList.get(3).getAddressLine(0);
+        }
+
+
+        textView1.setText(altitude + "\n" + address1 + "\n" + address2 + "\n" + address3 + "\n" + address4);
 
 
     }
