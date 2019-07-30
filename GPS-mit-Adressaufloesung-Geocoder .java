@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     private void registrieren() {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
     }
 
 
@@ -67,15 +66,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         locationManager.removeUpdates(this);
     }
 
-
+//
     private StringBuilder altitude = new StringBuilder();
     private StringBuilder address1 = new StringBuilder();
     private StringBuilder address2 = new StringBuilder();
     private StringBuilder address3 = new StringBuilder();
     private StringBuilder address4 = new StringBuilder();
+    private StringBuilder adminArea = new StringBuilder();
 
     @Override
     public void onLocationChanged(Location location) {
+
+
 
         try {
             addressList = gc.getFromLocation(location.getLatitude(), location.getLongitude(), 4);
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         address2.append("null");
         address3.append("null");
         address4.append("null");
+        adminArea.append("null");
 
         if (addressList != null) {
             deleteStr();
@@ -94,11 +97,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             address2.append(addressList.get(1).getAddressLine(0));
             address3.append(addressList.get(2).getAddressLine(0));
             address4.append(addressList.get(3).getAddressLine(0));
+            adminArea.append(addressList.get(0).getAdminArea());
+
         }
 
         altitude.append(location.getAltitude());
 
-        textView1.setText(altitude + "\n" + address1 + "\n" + address2 + "\n" + address3 + "\n" + address4);
+        textView1.setText(altitude + "\n" + address1 + "\n" + address2 + "\n" + address3 + "\n" + address4 + "\n" + adminArea );
 
         deleteStr();
     }
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         address2.delete(0, address2.length());
         address3.delete(0, address3.length());
         address4.delete(0, address4.length());
+        adminArea.delete(0, adminArea.length());
     }
 
     @Override
