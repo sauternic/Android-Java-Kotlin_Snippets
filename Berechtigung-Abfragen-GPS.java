@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         textView1 = findViewById(R.id.textView);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        berechtigungAbfragen();
 
     }
 
