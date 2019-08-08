@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
 
         editor.putString("InhaltTextfeld1",textFeld1.getText().toString());
         // Very Important!
