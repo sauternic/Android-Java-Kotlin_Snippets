@@ -1,27 +1,31 @@
-package ch.nicolassauter.pref2;
+package ch.nicolassauter.testgetpref;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText textFeld1;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        textFeld1 = findViewById(R.id.textFeld1);
+        Button button = findViewById(R.id.button);
+        textView = findViewById(R.id.textView);
 
-        sharedPreferences = getPreferences(MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        textFeld1.setText(sharedPreferences.getString("InhaltTextfeld1", ""));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setText("1000");
+            }
+        });
 
     }
 
@@ -29,8 +33,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        editor.putString("InhaltTextfeld1",textFeld1.getText().toString());
-        // Very Important!
-		editor.apply();
+        SharedPreferences sp = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        sp.edit().putString("meinWert",textView.getText().toString());
+        editor.apply();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SharedPreferences sp = getPreferences(MODE_PRIVATE);
+        String str_meinWert = sp.getString("meinWert","nichts");
+        textView.setText(str_meinWert);
     }
 }
