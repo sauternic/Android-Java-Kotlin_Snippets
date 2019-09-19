@@ -4,3 +4,10 @@
         startActivity(intent);
 
     }
+	
+	
+    // Open new Activity
+    public void onclick_textview(View v){
+        Intent intent = new Intent(this,NewActivity.class);
+        startActivity(intent);
+    }
