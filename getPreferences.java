@@ -33,18 +33,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        SharedPreferences sp = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        sp.edit().putString("meinWert",textView.getText().toString());
-        editor.apply();
+        SharedPreferences sh = getPreferences(MODE_PRIVATE);
+        sh.edit().putString("meinWert",textView.getText().toString()).apply();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        SharedPreferences sp = getPreferences(MODE_PRIVATE);
-        String str_meinWert = sp.getString("meinWert","nichts");
-        textView.setText(str_meinWert);
+        SharedPreferences sh = getPreferences(MODE_PRIVATE);
+        textView.setText(sh.getString("meinWert","Nichts?"));
     }
 }
