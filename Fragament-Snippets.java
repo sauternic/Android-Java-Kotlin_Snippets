@@ -3,7 +3,7 @@
     // Statisches setzten einer Framgment xml ohne Java-Code
     // Beachte den ganzen vollen Namen der xml-Datei mit Package-Name
     <fragment
-        android:id="@+id/fragment_a"
+        android:id="@+id/activity_main__fragment_a"
         android:name="ch.nicolassauter.fragamente2.a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
