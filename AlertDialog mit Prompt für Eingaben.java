@@ -56,3 +56,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+// In Kotlin &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+package android.example.myapplication
+
+import android.os.Bundle
+import android.text.InputType
+import android.util.Log
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+
+
+        val aDB = AlertDialog.Builder(this)
+                .setTitle("Der Titel")
+                .setMessage("Bla bla bla")
+
+
+        //**** EditText is a prompt field! *****************
+        val eT = EditText(this)
+        eT.inputType = InputType.TYPE_CLASS_TEXT
+        aDB.setView(eT)
+        //**** End EditText prompt field *******************
+
+
+        // set dialog message
+        aDB
+                .setCancelable(false)
+                .setPositiveButton("OK") { dialog, id -> Log.d("TAG", "Result: ${eT.text}") }
+                .setNegativeButton("Cancel") { dialog, id -> dialog.cancel() }
+                .create().show()
+    }
+}
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
